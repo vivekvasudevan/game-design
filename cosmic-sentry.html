@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-cs="cosmic-sentry">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/Favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Sentry — Game UI · Vivek Vasudevan</title>
+  <meta name="description" content="Cosmic Sentry — a hyper-casual space shooter. Game UI, store assets, and screen design case study by Vivek Vasudevan." />
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    :root {
+      --page-max:    1440px;
+      --page-margin: 120px;
+      --space-bg:    #27265f;
+      --space-bg-2:  #1c1b46;
+      --col-max:     1200px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-ui);
+      color: #eceaff;
+      background: var(--space-bg);
+      min-height: 100vh;
+      margin: 0;
+    }
+    .page {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      position: relative;
+      background: var(--space-bg);
+    }
+
+    /* ─── NAVIGATION (dark) ─────────────────────────────── */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 var(--page-margin);
+    }
+    nav {
+      background: rgba(28,27,70,0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 0 0 20px 20px;
+      height: 82px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.25);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 2px 0 rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.4); }
+    .nav-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+    .nav-name { font-size: 20px; font-weight: 700; color: #fff; white-space: nowrap; }
+    .nav-links { display: flex; gap: 24px; align-items: center; list-style: none; }
+    .nav-links a, .nav-links button {
+      font-family: var(--font-ui);
+      font-size: 16px; font-weight: 500;
+      color: #eceaff; text-decoration: none;
+      background: none; border: none; cursor: pointer;
+      padding: 8px; opacity: 0.55; transition: opacity 0.2s; display: block;
+    }
+    .nav-links li.active a, .nav-links li.active button {
+      opacity: 1; border-bottom: 2px solid #21e4ff;
+    }
+    .nav-links a:hover, .nav-links button:hover { opacity: 0.9; }
+
+    /* ─── CASE STUDY SECTIONS ───────────────────────────── */
+    .cs-doc {
+      max-width: var(--col-max);
+      margin: 0 auto;
+      padding: 0;
+      background: var(--space-bg);
+    }
+    .cs-section { display: block; font-size: 0; }
+    .cs-section img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+    }
+
+    /* visually-hidden but accessible copy */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* back link strip */
+    .cs-backbar {
+      max-width: var(--col-max);
+      margin: 0 auto;
+      padding: 28px 0 10px;
+    }
+    .cs-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: #b9b5ff; text-decoration: none; font-size: 15px; font-weight: 500;
+      opacity: 0.8; transition: opacity 0.2s, transform 0.2s;
+    }
+    .cs-back:hover { opacity: 1; transform: translateX(-3px); }
+
+    /* ─── FOOTER (dark) ─────────────────────────────────── */
+    .footer {
+      max-width: var(--col-max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 90px 0 0;
+      text-align: center;
+    }
+    .footer-eyebrow { font-size: 18px; color: #b9b5ff; opacity: 0.8; }
+    .footer-headline { font-size: 48px; font-weight: 700; color: #fff; margin: 8px 0 28px; }
+    .footer-btns { display: flex; gap: 16px; justify-content: center; }
+    .btn-filled, .btn-outline {
+      font-family: var(--font-ui); font-size: 16px; font-weight: 600;
+      padding: 14px 32px; border-radius: 999px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn-filled { background: #21e4ff; color: #14133a; }
+    .btn-filled:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(33,228,255,0.3); }
+    .btn-outline { border: 2px solid rgba(236,234,255,0.5); color: #eceaff; }
+    .btn-outline:hover { border-color: #21e4ff; color: #21e4ff; transform: translateY(-2px); }
+    .footer-email-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: #eceaff; text-decoration: none; opacity: 0.75; font-size: 15px;
+    }
+    .footer-email-link:hover { opacity: 1; }
+    .footer-bottom-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; flex-wrap: wrap; gap: 20px;
+      /* mirror the top nav: translucent panel, blur, rounded corners, shadow */
+      background: rgba(28,27,70,0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px 20px 0 0;
+      min-height: 82px;
+      padding: 14px 20px;
+      box-shadow: 0 -2px 0 rgba(0,0,0,0.15), 0 -4px 16px rgba(0,0,0,0.25);
+    }
+    .footer-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+    .footer-brand-text { display: flex; flex-direction: column; text-align: left; }
+    .footer-brand-name { font-size: 20px; font-weight: 700; color: #fff; }
+    .footer-brand-copy { font-size: 13px; color: #b9b5ff; opacity: 0.7; }
+    .footer-nav-links { display: flex; gap: 24px; align-items: center; list-style: none; }
+    .footer-nav-links a {
+      font-family: var(--font-ui);
+      font-size: 16px; font-weight: 500; color: #eceaff;
+      opacity: 0.55; text-decoration: none; padding: 8px; transition: opacity 0.2s;
+    }
+    .footer-nav-links a:hover { opacity: 0.9; }
+
+    /* ─── HAMBURGER ─────────────────────────────────────── */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+      width: 48px; height: 48px; align-items: center; justify-content: center;
+    }
+    .nav-hamburger span { display: block; width: 32px; height: 4px; background: #eceaff; border-radius: 22px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 12px;
+      background: #1c1b46; border-top: 1px solid rgba(236,234,255,0.1);
+      padding: 8px 0 16px; position: absolute; top: 82px; left: 0; right: 0; z-index: 99;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .mobile-menu.open { display: flex; }
+    @media (min-width: 769px) { .mobile-menu { display: none !important; } }
+    .mobile-menu a, .mobile-menu button {
+      font-family: var(--font-ui); font-size: 16px; font-weight: 500; color: #eceaff;
+      text-decoration: none; background: none; border: none; cursor: pointer;
+      padding: 10px 20px; text-align: left; width: 100%; display: block;
+    }
+
+    /* ─── SCROLL TOP ────────────────────────────────────── */
+    .scroll-top {
+      position: fixed; bottom: 24px; right: 20px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #21e4ff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s; z-index: 90;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .scroll-top:hover { transform: translateY(-4px); }
+    .scroll-top svg { width: 22px; height: 22px; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-wrap { padding: 0; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .cs-doc, .footer, .cs-backbar { padding-left: 20px; padding-right: 20px; }
+      .footer-headline { font-size: 36px; }
+    }
+    @media (max-width: 480px) {
+      .nav-name { display: none; }
+      .footer-bottom-nav { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <div class="nav-wrap">
+    <nav id="main-nav">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/VivekVasudevanDesign_Logo.svg" alt="VD logo" width="48" height="48" style="border-radius:8px;flex-shrink:0;" />
+        <span class="nav-name">Vivek Vasudevan</span>
+      </a>
+      <ul class="nav-links">
+        <li id="nav-home"><a href="index.html">Home</a></li>
+        <li class="active" id="nav-games"><a href="index.html#case-studies">Games</a></li>
+        <li id="nav-connect"><button onclick="scrollToFooter()">Let's Connect</button></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu" role="menu">
+      <a href="index.html" onclick="closeMobileMenu()">Home</a>
+      <a href="index.html#case-studies" onclick="closeMobileMenu()">Games</a>
+      <button onclick="closeMobileMenu(); scrollToFooter()">Let's Connect</button>
+    </div>
+  </div>
+
+  <!-- ═══ BACK LINK ═══ -->
+  <div class="cs-backbar">
+    <a class="cs-back" href="index.html#case-studies">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Games
+    </a>
+  </div>
+
+  <!-- ═══ CASE STUDY (section-by-section, as on Behance) ═══ -->
+  <article class="cs-doc">
+
+    <!-- Hero -->
+    <section class="cs-section" aria-label="Cosmic Sentry">
+      <h1 class="sr-only">Cosmic Sentry — Hyper-casual space shooter game UI</h1>
+      <img src="assets/images/cosmic/hero.webp" alt="Cosmic Sentry title with game screens, astronaut and satellite in space" />
+    </section>
+
+    <!-- 01 About -->
+    <section class="cs-section" aria-labelledby="about-h">
+      <h2 id="about-h" class="sr-only">01 — About</h2>
+      <p class="sr-only">
+        Cosmic Sentry is an adrenaline-pumping casual game where you become the last line of
+        defense against an unrelenting cosmic onslaught. As a lone satellite, you'll strategically
+        fire at incoming asteroids while simultaneously thwarting sneaky alien kidnappers targeting
+        stranded astronauts. Master the art of timing and precision as you navigate through
+        increasingly challenging waves of danger. Unleash powerful upgrades like 'Destroy All' and
+        'Protective Bubble' to survive the cosmic chaos. Can you rise to the challenge and become the
+        ultimate Cosmic Sentry? Tools: Figma, Illustrator, Photoshop, yEd, Pen &amp; Paper.
+      </p>
+      <img src="assets/images/cosmic/about.webp" alt="About Cosmic Sentry — game description and tools used" />
+    </section>
+
+    <!-- 02 Colour Palette -->
+    <section class="cs-section" aria-labelledby="palette-h">
+      <h2 id="palette-h" class="sr-only">02 — Colour Palette</h2>
+      <p class="sr-only">Palette: #773085 / #292968, #EFE2EE / #FF306E, #01D0FF / #702CFF, #21E4FF / #21E4FF.</p>
+      <img src="assets/images/cosmic/palette.webp" alt="Cosmic Sentry colour palette swatches with hex codes" />
+    </section>
+
+    <!-- 03 UI Elements -->
+    <section class="cs-section" aria-labelledby="ui-h">
+      <h2 id="ui-h" class="sr-only">03 — UI Elements</h2>
+      <img src="assets/images/cosmic/ui.webp" alt="UI elements — sound, selection, buttons, frames and store buttons" />
+    </section>
+
+    <!-- 04 Store Assets -->
+    <section class="cs-section" aria-labelledby="assets-h">
+      <h2 id="assets-h" class="sr-only">04 — Store Assets</h2>
+      <img src="assets/images/cosmic/assets.webp" alt="Store assets — coins, chests and gem reward illustrations" />
+    </section>
+
+    <!-- 05 Game Screens -->
+    <section class="cs-section" aria-labelledby="screens-h">
+      <h2 id="screens-h" class="sr-only">05 — Game Screens</h2>
+      <img src="assets/images/cosmic/screens.webp" alt="Game screens — first-time user experience onboarding and full game screens" />
+    </section>
+
+    <!-- Thanks -->
+    <section class="cs-section" aria-label="Thanks for viewing">
+      <img src="assets/images/cosmic/thanks.webp" alt="Thanks for viewing" />
+    </section>
+
+  </article>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" id="footer">
+    <div class="footer-cta">
+      <p class="footer-eyebrow">Like what you see?</p>
+      <h2 class="footer-headline">Let's Connect!</h2>
+      <div class="footer-btns">
+        <a class="btn-filled" href="https://www.linkedin.com/in/vivek-vasudevan/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn-outline" href="assets/VivekVasudevan_Resume.pdf" download="VivekVasudevan_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+    <a class="footer-email-link" href="mailto:vivek.vasudevan.design@gmail.com">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.33" y="2.67" width="13.33" height="10.67" rx="1.33" stroke="#eceaff" stroke-width="1.33" stroke-linejoin="round"/><path d="M1.33 4.67 L8 9.33 L14.67 4.67" stroke="#eceaff" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      vivek.vasudevan.design@gmail.com
+    </a>
+    <div class="footer-bottom-nav">
+      <a href="index.html" class="footer-brand">
+        <img src="assets/images/VivekVasudevanDesign_Logo.svg" alt="VD logo" width="48" height="48" style="border-radius:8px;flex-shrink:0;" />
+        <div class="footer-brand-text">
+          <span class="footer-brand-name">Vivek Vasudevan</span>
+          <span class="footer-brand-copy">© 2026 All rights reserved</span>
+        </div>
+      </a>
+      <ul class="footer-nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#case-studies">Games</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</div><!-- /page -->
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#14133a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 20);
+    scrollTopBtn.classList.toggle('visible', y > 500);
+  });
+  function scrollToFooter() { document.getElementById('footer').scrollIntoView({ behavior: 'smooth' }); }
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburgerBtn?.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburgerBtn.classList.toggle('open', open);
+    hamburgerBtn.setAttribute('aria-expanded', open);
+  });
+  function closeMobileMenu() {
+    mobileMenu?.classList.remove('open');
+    hamburgerBtn?.classList.remove('open');
+    hamburgerBtn?.setAttribute('aria-expanded', 'false');
+  }
+</script>
+</body>
+</html>
