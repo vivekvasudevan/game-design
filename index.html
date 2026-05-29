@@ -458,7 +458,6 @@
       <ul class="nav-links">
         <li class="active" id="nav-home"><a href="#" onclick="scrollToTop(event)">Home</a></li>
         <li id="nav-cs"><a href="#case-studies">Games</a></li>
-        <li id="nav-portfolio"><a href="https://vivekvasudevan.github.io/" target="_blank" rel="noopener">Design Portfolio</a></li>
         <li id="nav-connect"><button onclick="scrollToFooter()">Let's Connect</button></li>
       </ul>
       <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
@@ -468,7 +467,6 @@
     <div class="mobile-menu" id="mobileMenu" role="menu">
       <a href="#" onclick="closeMobileMenu(); scrollToTop(event)">Home</a>
       <a href="#case-studies" onclick="closeMobileMenu()">Games</a>
-      <a href="https://vivekvasudevan.github.io/" target="_blank" rel="noopener" onclick="closeMobileMenu()">Design Portfolio</a>
       <button onclick="closeMobileMenu(); scrollToFooter()">Let's Connect</button>
     </div>
   </div>
@@ -581,7 +579,6 @@
           <ul class="footer-nav-links">
             <li><a href="#" onclick="scrollToTop(event)">Home</a></li>
             <li><a href="#case-studies">Games</a></li>
-            <li><a href="https://vivekvasudevan.github.io/" target="_blank" rel="noopener">Design Portfolio</a></li>
           </ul>
         </div>
       </div>
@@ -614,7 +611,7 @@
     const csTop = document.getElementById('case-studies').getBoundingClientRect().top;
     const footerTop = document.getElementById('footer').getBoundingClientRect().top;
     const navH = 100;
-    ['nav-home','nav-cs','nav-portfolio','nav-connect'].forEach(id =>
+    ['nav-home','nav-cs','nav-connect'].forEach(id =>
       document.getElementById(id)?.classList.remove('active')
     );
     if (footerTop < navH + 200) {
