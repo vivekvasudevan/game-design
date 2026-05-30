@@ -1,6 +1,6 @@
 /*
  * ─────────────────────────────────────────────────────────
- *  SHARED DESIGN SYSTEM — Vivek Vasudevan Portfolio
+ *  SHARED DESIGN SYSTEM - Vivek Vasudevan Portfolio
  *  shared.css  |  v2.0
  *
  *  HOW IT WORKS
@@ -15,10 +15,10 @@
  */
 
 /* ═══════════════════════════════════════════════════════
-   1. FONTS — all Google Fonts in one network request
+   1. FONTS - all Google Fonts in one network request
    ═══════════════════════════════════════════════════════ */
 
-/* Work Sans (index, about, atisfyre, jinance, coinloop — UI chrome on every page) */
+/* Work Sans (index, about, atisfyre, jinance, coinloop - UI chrome on every page) */
 /* Poppins  (atisfyreach headings, mantro) */
 /* Lato     (atisfyreach body copy) */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Lato:ital,wght@0,400;0,700;1,700&display=swap');
@@ -42,7 +42,7 @@
   /* ── Typography ──────────────────────────────────────── */
   --font-heading : 'Work Sans', sans-serif;
   --font-body    : 'Work Sans', sans-serif;
-  --font-ui      : 'Work Sans', sans-serif; /* nav, labels, captions — always Work Sans */
+  --font-ui      : 'Work Sans', sans-serif; /* nav, labels, captions - always Work Sans */
 
   /* ── Colour ──────────────────────────────────────────── */
   --color-text        : #2b2b2b;
@@ -132,7 +132,7 @@
 
 /* ═══════════════════════════════════════════════════════
    4. MINIMAL BASE RESET
-      Safe to apply globally — matches existing page resets
+      Safe to apply globally - matches existing page resets
       so adding this file won't change anything visually.
    ═══════════════════════════════════════════════════════ */
 *, *::before, *::after {
@@ -420,7 +420,7 @@ nav.scrolled {
 }
 .scroll-top-tooltip.visible { opacity: 1; }
 
-/* Hide tooltip below tablet — finger-tap replaces hover */
+/* Hide tooltip below tablet - finger-tap replaces hover */
 @media (max-width: 1024px) {
   .scroll-top-tooltip { display: none !important; }
 }
@@ -564,14 +564,14 @@ nav.scrolled {
    ═══════════════════════════════════════════════════════
    When updating a page to use this system:
 
-   Step A — In <html>, add:  data-cs="[case-study-name]"
-   Step B — In <head>, add before the page <style>:
+   Step A - In <html>, add:  data-cs="[case-study-name]"
+   Step B - In <head>, add before the page <style>:
             <link rel="stylesheet" href="assets/shared.css" />
-   Step C — Remove the duplicate Google Fonts <link> tag
+   Step C - Remove the duplicate Google Fonts <link> tag
              (this file handles all font loading).
-   Step D — Replace hardcoded font-family strings with
+   Step D - Replace hardcoded font-family strings with
              CSS variables (done in v1.0).
-   Step E — Remove CSS blocks for these shared components:
+   Step E - Remove CSS blocks for these shared components:
             - .reveal / .reveal.visible
             - .nav-wrap / nav / .nav-brand / .nav-logo /
               .nav-name / .nav-links / .nav-hamburger /
