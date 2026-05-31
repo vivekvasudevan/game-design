@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --bg: #060A0F;
@@ -11,8 +11,8 @@
   --accent: #FF5028;
   --accent-dim: rgba(255,80,40,0.12);
   --teal: #00BFA8;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Outfit', sans-serif;
+  --font-display: 'Hanken Grotesk', sans-serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
   --nav-height: 68px;
   --content-width: 860px;
   --wide-width: 1200px;
