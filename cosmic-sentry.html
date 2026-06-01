@@ -101,6 +101,43 @@
     }
     .cs-back:hover { opacity: 1; transform: translateX(-3px); }
 
+    /* case study prev/next nav + slim footer (matches the case study template) */
+    .cs-pagenav {
+      max-width: var(--col-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 48px 0;
+    }
+    .cs-pagenav a {
+      color: #9a97c9;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .cs-pagenav a:hover { color: #21e4ff; }
+
+    .cs-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 28px var(--page-margin);
+      margin-top: 16px;
+      border-top: 1px solid rgba(236,234,255,0.12);
+    }
+    .cs-footer p {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: #8a86c0;
+      margin: 0;
+    }
+
     /* ─── FOOTER (dark) ─────────────────────────────────── */
     .footer {
       max-width: var(--col-max);
@@ -196,7 +233,7 @@
       .nav-wrap { padding: 0; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .cs-doc, .footer, .cs-backbar { padding-left: 20px; padding-right: 20px; }
+      .cs-doc, .footer, .cs-backbar, .cs-pagenav, .cs-footer { padding-left: 20px; padding-right: 20px; }
       .footer-headline { font-size: 36px; }
     }
     @media (max-width: 480px) {
@@ -211,32 +248,15 @@
   <!-- ═══ NAVIGATION ═══ -->
   <div class="nav-wrap">
     <nav id="main-nav">
+      <a class="cs-back" href="index.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </a>
       <a href="index.html" class="nav-brand">
         <img src="assets/images/VivekVasudevanDesign_Logo.svg" alt="VD logo" width="48" height="48" style="border-radius:8px;flex-shrink:0;" />
         <span class="nav-name">Vivek Vasudevan</span>
       </a>
-      <ul class="nav-links">
-        <li id="nav-home"><a href="index.html">Home</a></li>
-        <li class="active" id="nav-games"><a href="index.html#case-studies">Games</a></li>
-        <li id="nav-connect"><button onclick="scrollToFooter()">Let's Connect</button></li>
-      </ul>
-      <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </nav>
-    <div class="mobile-menu" id="mobileMenu" role="menu">
-      <a href="index.html" onclick="closeMobileMenu()">Home</a>
-      <a href="index.html#case-studies" onclick="closeMobileMenu()">Games</a>
-      <button onclick="closeMobileMenu(); scrollToFooter()">Let's Connect</button>
-    </div>
-  </div>
-
-  <!-- ═══ BACK LINK ═══ -->
-  <div class="cs-backbar">
-    <a class="cs-back" href="index.html#case-studies">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Games
-    </a>
   </div>
 
   <!-- ═══ CASE STUDY (section-by-section, as on Behance) ═══ -->
@@ -295,33 +315,16 @@
 
   </article>
 
+  <!-- ═══ CASE STUDY NAV ═══ -->
+  <div class="cs-pagenav" role="navigation" aria-label="Case study navigation">
+    <a href="kawaii-rooms.html">← Kawaii Rooms</a>
+    <a href="all-india-quiz.html">Next: All India Quiz →</a>
+  </div>
+
   <!-- ═══ FOOTER ═══ -->
-  <footer class="footer" id="footer">
-    <div class="footer-cta">
-      <p class="footer-eyebrow">Like what you see?</p>
-      <h2 class="footer-headline">Let's Connect!</h2>
-      <div class="footer-btns">
-        <a class="btn-filled" href="https://www.linkedin.com/in/vivek-vasudevan/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn-outline" href="assets/VivekVasudevan_Resume.pdf" download="VivekVasudevan_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-    <a class="footer-email-link" href="mailto:vivek.vasudevan.design@gmail.com">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.33" y="2.67" width="13.33" height="10.67" rx="1.33" stroke="#eceaff" stroke-width="1.33" stroke-linejoin="round"/><path d="M1.33 4.67 L8 9.33 L14.67 4.67" stroke="#eceaff" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      vivek.vasudevan.design@gmail.com
-    </a>
-    <div class="footer-bottom-nav">
-      <a href="index.html" class="footer-brand">
-        <img src="assets/images/VivekVasudevanDesign_Logo.svg" alt="VD logo" width="48" height="48" style="border-radius:8px;flex-shrink:0;" />
-        <div class="footer-brand-text">
-          <span class="footer-brand-name">Vivek Vasudevan</span>
-          <span class="footer-brand-copy">© 2026 All rights reserved</span>
-        </div>
-      </a>
-      <ul class="footer-nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#case-studies">Games</a></li>
-      </ul>
-    </div>
+  <footer class="cs-footer">
+    <p>Vivek Vasudevan, Senior Game Designer</p>
+    <p>Melbourne, AU</p>
   </footer>
 
 </div><!-- /page -->
