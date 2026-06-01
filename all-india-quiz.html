@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All India Quiz · Vivek Vasudevan</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Game screens shown in phone mockups */
+    .aiq-phones {
+      display: flex; justify-content: center; align-items: flex-start;
+      gap: 36px; flex-wrap: wrap;
+    }
+    .aiq-phone {
+      width: 232px;
+      padding: 10px;
+      background: #0b1018;
+      border: 1px solid #243447;
+      border-radius: 30px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+    .aiq-phone img {
+      display: block; width: 100%; height: auto;
+      border: none; border-radius: 22px;
+    }
+    @media (max-width: 520px) {
+      .aiq-phone { width: 70%; max-width: 280px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -24,7 +46,7 @@
       <p class="lead animate-3">A single-player trivia game built entirely around India: its history, geography, culture, cinema, and sport. Four hundred questions across twenty themed sets, and a top ten most-downloaded finish at launch.</p>
       <div class="cs-meta animate-4">
         <span class="tag">Producer</span>
-        <span class="tag-accent tag">Design Oversight</span>
+        <span class="tag">Design Oversight</span>
         <span class="tag">One Eyed Octopus Studios</span>
         <span class="tag">Android and iOS</span>
         <span class="tag">Top 10 at launch</span>
@@ -35,12 +57,7 @@
   <!-- KEY ART -->
   <div class="wide">
     <div class="media media-wide">
-      <div class="img-ph r-ultra">
-        <span class="ph-icon">Image 01 · Key Art</span>
-        <span class="ph-title">Hero key art / logo lockup</span>
-        <span class="ph-desc">The brand image: the All India Quiz logo over an India-themed motif (a map, monuments, a touch of tricolour). It sets the tone before anyone reads a word.</span>
-        <span class="ph-spec">images/all-india-quiz/01-keyart.jpg · 2100×900 (21:9) · JPG or WebP</span>
-      </div>
+      <img src="images/all-india-quiz/01-keyart.jpg" alt="All India Quiz key art" />
       <figcaption><strong>Caption:</strong> All India Quiz. How much do you really know about India?</figcaption>
     </div>
   </div>
@@ -94,25 +111,10 @@
 
       <!-- SCREEN GALLERY -->
       <div class="media">
-        <div class="media-gallery cols-3">
-          <div class="img-ph r-port">
-            <span class="ph-icon">Image 02</span>
-            <span class="ph-title">Question screen</span>
-            <span class="ph-desc">A live question with answer options and a timer.</span>
-            <span class="ph-spec">images/all-india-quiz/02-question.png · 900×1200</span>
-          </div>
-          <div class="img-ph r-port">
-            <span class="ph-icon">Image 03</span>
-            <span class="ph-title">Set / topic select</span>
-            <span class="ph-desc">The screen where players choose one of the twenty sets.</span>
-            <span class="ph-spec">images/all-india-quiz/03-sets.png · 900×1200</span>
-          </div>
-          <div class="img-ph r-port">
-            <span class="ph-icon">Image 04</span>
-            <span class="ph-title">Results / score</span>
-            <span class="ph-desc">The end-of-set score and results screen.</span>
-            <span class="ph-spec">images/all-india-quiz/04-results.png · 900×1200</span>
-          </div>
+        <div class="aiq-phones">
+          <div class="aiq-phone"><img src="images/all-india-quiz/screen-1.png" alt="All India Quiz set-select screen" /></div>
+          <div class="aiq-phone"><img src="images/all-india-quiz/screen-2.png" alt="All India Quiz gameplay screen" /></div>
+          <div class="aiq-phone"><img src="images/all-india-quiz/screen-3.png" alt="All India Quiz gameplay screen" /></div>
         </div>
         <figcaption><strong>Caption:</strong> The core flow. Pick a set, answer twenty questions, and see how you did.</figcaption>
       </div>
@@ -171,25 +173,6 @@
         <h3>Scoring and fairness</h3>
         <p>Scoring rewarded both accuracy and a bit of speed, without punishing a thoughtful player too harshly. The guiding rule throughout was fairness: clean questions, honest difficulty, and a score players could trust.</p>
       </div>
-
-      <!-- SYSTEM DIAGRAMS -->
-      <div class="media">
-        <div class="media-gallery cols-2">
-          <div class="img-ph r-wide">
-            <span class="ph-icon">Image 05 · Diagram</span>
-            <span class="ph-title">Content map: 20 sets by topic</span>
-            <span class="ph-desc">A simple overview of the twenty sets and the themes they cover.</span>
-            <span class="ph-spec">images/all-india-quiz/05-content-map.png · 1600×1000</span>
-          </div>
-          <div class="img-ph r-wide">
-            <span class="ph-icon">Image 06 · Diagram / Sheet</span>
-            <span class="ph-title">Difficulty and scoring model</span>
-            <span class="ph-desc">A difficulty-curve chart for a set, or the scoring balance sheet.</span>
-            <span class="ph-spec">images/all-india-quiz/06-scoring.png · 1600×1000</span>
-          </div>
-        </div>
-        <figcaption><strong>Caption:</strong> The shape of the content on the left, and how a set is paced and scored on the right.</figcaption>
-      </div>
     </section>
   </div>
 
@@ -206,12 +189,7 @@
 
       <!-- LAUNCH / STORE -->
       <div class="media">
-        <div class="img-ph r-wide">
-          <span class="ph-icon">Image 07</span>
-          <span class="ph-title">Store listing or top-10 moment</span>
-          <span class="ph-desc">A Play Store / App Store listing screenshot, or a capture of the top-10 chart placement, if you have one.</span>
-          <span class="ph-spec">images/all-india-quiz/07-launch.png · 1600×900</span>
-        </div>
+        <img src="images/all-india-quiz/07-launch.png" alt="All India Quiz launch / store listing" />
         <figcaption><strong>Caption:</strong> Launch day. The game found its audience fast.</figcaption>
       </div>
     </section>
