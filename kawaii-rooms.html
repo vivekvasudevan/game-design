@@ -5,8 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kawaii Rooms · Vivek Vasudevan</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Kawaii Rooms: its own warmer, alternating layout (teal accent) ── */
+    .kr { --kr: #00BFA8; }
+
+    /* Hero: two columns instead of a full-bleed banner */
+    .kr-hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      padding-top: calc(var(--nav-height) + 72px);
+      padding-bottom: 56px;
+    }
+    .kr-hero .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--kr); margin-bottom: 22px;
+    }
+    .kr-hero h1 { margin-bottom: 20px; }
+    .kr-hero .lead { margin-bottom: 28px; }
+    .kr-hero-art .img-ph { min-height: 360px; border-radius: 18px; }
+    .kr-hero-art img { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--border); }
+
+    /* Inline facts strip instead of a 6-box grid */
+    .kr-facts {
+      display: flex; flex-wrap: wrap; gap: 26px 44px;
+      padding: 26px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .kr-fact .l {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--kr); margin-bottom: 5px;
+    }
+    .kr-fact .v { font-size: 15px; font-weight: 600; color: var(--text); }
+
+    .kr-block { padding: 64px 0; }
+    .kr-block.tight { padding: 40px 0; }
+
+    /* The Aim: big north-star statement */
+    .kr-aim { max-width: none; }
+    .kr-aim-h {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(34px, 5.2vw, 58px); line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 22px; color: var(--text);
+    }
+    .kr-aim-h .mark { color: var(--kr); }
+    .kr-aim p { font-size: 18px; line-height: 1.7; color: var(--text-secondary); max-width: none; }
+    .kr-lede { max-width: none; }
+    .kr-lede h2 { margin-bottom: 20px; }
+    .kr-lede p { font-size: 17px; line-height: 1.75; color: var(--text-secondary); max-width: none; }
+    .kr-lede p + p { margin-top: 16px; }
+
+    .kr .kr-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--kr); margin-bottom: 28px;
+    }
+
+    /* Cast grid: rounded, labelled cards */
+    .kr-cast { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .kr-cast .img-ph { border-radius: 16px; min-height: 240px; }
+    .kr-cast figure img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border); }
+    .kr-cast figcaption {
+      margin-top: 12px; font-size: 13px; color: var(--text-secondary); text-align: center;
+    }
+
+    /* Centered pull quote, no side border (different from the other case study) */
+    .kr-quote {
+      max-width: none; margin: 0 auto; text-align: center; padding: 8px 0;
+    }
+    .kr-quote p {
+      font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700; line-height: 1.35; color: var(--text); letter-spacing: -0.01em;
+    }
+    .kr-quote .mark { color: var(--kr); }
+
+    /* Alternating image / text feature rows */
+    .kr-rows { display: flex; flex-direction: column; gap: 8px; }
+    .kr-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+      align-items: center; padding: 36px 0;
+    }
+    .kr-rows .kr-row:nth-child(even) .kr-media { order: 2; }
+    .kr-media .img-ph { border-radius: 16px; min-height: 300px; }
+    .kr-media img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border); }
+    .kr-row .kr-num {
+      font-family: var(--font-display); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--kr); margin-bottom: 12px;
+    }
+    .kr-row h3 { font-size: 24px; line-height: 1.2; margin-bottom: 12px; color: var(--text); }
+    .kr-row p { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: none; }
+
+    /* Core loop as a horizontal stepped band */
+    .kr-loop { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+    .kr-step {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 26px; position: relative;
+    }
+    .kr-step .t {
+      font-family: var(--font-display); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr); margin-bottom: 12px;
+    }
+    .kr-step p { font-size: 14px; line-height: 1.65; color: var(--text-secondary); }
+
+    /* Reel: matches the video's own 16:9 box, centred */
+    .kr-reel {
+      position: relative; width: 100%; max-width: 680px; margin: 0 auto;
+      aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden;
+      border: 1px solid var(--border); background: #000;
+    }
+    .kr-reel iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+    /* Closing statement, centered */
+    .kr-close { max-width: none; margin: 0 auto; text-align: center; }
+    .kr-close h2 { margin-bottom: 18px; }
+    .kr-close p { font-size: 17px; line-height: 1.75; color: var(--text-secondary); }
+    .kr-close p + p { margin-top: 16px; }
+
+    @media (max-width: 860px) {
+      .kr-hero { grid-template-columns: 1fr; gap: 32px; padding-top: calc(var(--nav-height) + 48px); }
+      .kr-hero-art { order: -1; }
+      .kr-row { grid-template-columns: 1fr; gap: 24px; }
+      .kr-rows .kr-row:nth-child(even) .kr-media { order: 0; }
+      .kr-row .kr-media { order: -1; }
+      .kr-loop { grid-template-columns: 1fr; }
+      .kr-cast { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body>
+<body class="kr">
 
   <nav>
     <a class="nav-logo" href="index.html" aria-label="Vivek Vasudevan home"><img src="assets/images/VivekVasudevanDesign_Logo.svg" alt="Vivek Vasudevan Design logo" width="40" height="40" /></a>
@@ -16,246 +143,196 @@
     </ul>
   </nav>
 
-  <!-- ─── HERO ─── -->
-  <div class="container">
-    <section class="cs-hero">
-      <p class="eyebrow animate-1">Case Study 02</p>
-      <h1 class="animate-2" style="margin-bottom: 24px;">Kawaii<br>Rooms</h1>
-      <p class="lead animate-3">A cosy Facebook social game about caring for pets, decorating their rooms, and breeding them to discover brand new species. Cute on the surface, with genuinely deep systems underneath.</p>
-      <div class="cs-meta animate-4">
-        <span class="tag">Game Designer</span>
-        <span class="tag-accent tag">Systems and Economy</span>
-        <span class="tag">kickAlive</span>
-        <span class="tag">May to Dec 2016</span>
-      </div>
-    </section>
-  </div>
-
-  <!-- KEY ART -->
+  <!-- ── HERO (two column) ── -->
   <div class="wide">
-    <div class="media media-wide">
-      <div class="img-ph r-ultra">
-        <span class="ph-icon">Image 01 · Key Art</span>
-        <span class="ph-title">Game logo / hero key art</span>
-        <span class="ph-desc">The warm, cute brand image: a hero pet in a decorated room with a soft pastel palette. This sets the tone before anyone reads a word.</span>
-        <span class="ph-spec">images/kawaii-rooms/01-keyart.jpg · 2100×900 (21:9) · JPG or WebP</span>
+    <section class="kr-hero">
+      <div>
+        <p class="eyebrow">Case Study 02</p>
+        <h1>Kawaii Rooms</h1>
+        <p class="lead">A cosy Facebook game that blends social play, time management, building, and nurture. Care for pets, build out their rooms, and breed them to discover brand new species. Cute on the surface, with genuinely deep systems underneath.</p>
+        <div class="cs-meta" style="border:none; margin:0; padding:0;">
+          <span class="tag">Game Designer</span>
+          <span class="tag">Systems and Economy</span>
+          <span class="tag">kickAlive</span>
+          <span class="tag">May to Dec 2016</span>
+        </div>
       </div>
-      <figcaption><strong>Caption:</strong> Kawaii Rooms. Cute on the surface, and genuinely deep underneath.</figcaption>
+      <div class="kr-hero-art">
+        <img src="images/kawaii-rooms/keyart.jpg" alt="Kawaii Rooms key art, a pet in its decorated room" />
+      </div>
+    </section>
+  </div>
+
+  <!-- ── FACTS STRIP ── -->
+  <div class="wide">
+    <div class="kr-facts">
+      <div class="kr-fact"><div class="l">Studio</div><div class="v">kickAlive</div></div>
+      <div class="kr-fact"><div class="l">My Role</div><div class="v">Game Designer</div></div>
+      <div class="kr-fact"><div class="l">Focus</div><div class="v">Systems and Economy</div></div>
+      <div class="kr-fact"><div class="l">Platform</div><div class="v">Facebook (Social)</div></div>
+      <div class="kr-fact"><div class="l">Genre</div><div class="v">Social · Time Management · Builder · Nurture</div></div>
+      <div class="kr-fact"><div class="l">Duration</div><div class="v">8 months</div></div>
+      <div class="kr-fact"><div class="l">Status</div><div class="v">Developed, not released</div></div>
     </div>
   </div>
 
-  <hr class="divider">
-
-  <!-- INFO GRID -->
-  <div class="container" style="padding-top: 0; padding-bottom: 0;">
-    <div class="info-grid" style="margin-top: 0;">
-      <div class="info-block">
-        <div class="label">Studio</div>
-        <div class="value">kickAlive</div>
-      </div>
-      <div class="info-block">
-        <div class="label">My Role</div>
-        <div class="value">Game Designer (Consultant)</div>
-      </div>
-      <div class="info-block">
-        <div class="label">Platform</div>
-        <div class="value">Facebook (Social / Browser)</div>
-      </div>
-      <div class="info-block">
-        <div class="label">Genre</div>
-        <div class="value">Social Casual</div>
-      </div>
-      <div class="info-block">
-        <div class="label">Duration</div>
-        <div class="value">8 months</div>
-      </div>
-      <div class="info-block">
-        <div class="label">Status</div>
-        <div class="value">Developed, Not Released</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 01: The Game ─── -->
-  <div class="container">
-    <section class="cs-section">
-      <div class="section-label">
-        <span class="num">01</span>
-        <h4>The Game</h4>
-      </div>
-      <h2>Pets, rooms, and the hunt for the rarest breed</h2>
-      <p style="margin-top: 20px;">Kawaii Rooms was a Facebook social game about caring for cute pets, building out their personal living spaces, and breeding them to discover entirely new species. It sat right at the meeting point of nurture mechanics, social play, and collectible breeding, and it was built to drive both a quick daily visit and a long-term collection goal.</p>
-      <p>The tone was deliberately warm and cute, but the systems underneath were anything but shallow. A pet's wellbeing, its relationships, and its room all had real mechanical consequences. None of it was just for show, and carrying that depth lightly was the heart of the design challenge.</p>
-
-      <!-- PET CHARACTER GALLERY -->
-      <div class="media">
-        <div class="media-gallery cols-3">
-          <div class="img-ph r-square">
-            <span class="ph-icon">Image 02</span>
-            <span class="ph-title">Pet designs, base species</span>
-            <span class="ph-desc">A few of the starter pet characters.</span>
-            <span class="ph-spec">images/kawaii-rooms/02-pets-base.png · 1000×1000 · PNG (transparent)</span>
-          </div>
-          <div class="img-ph r-square">
-            <span class="ph-icon">Image 03</span>
-            <span class="ph-title">Pet designs, rare breeds</span>
-            <span class="ph-desc">Rare or hybrid species that come from breeding.</span>
-            <span class="ph-spec">images/kawaii-rooms/03-pets-rare.png · 1000×1000 · PNG</span>
-          </div>
-          <div class="img-ph r-square">
-            <span class="ph-icon">Image 04</span>
-            <span class="ph-title">Expression / mood sheet</span>
-            <span class="ph-desc">One pet across happy, sad, and cold states.</span>
-            <span class="ph-spec">images/kawaii-rooms/04-pet-moods.png · 1000×1000 · PNG</span>
-          </div>
-        </div>
-        <figcaption><strong>Caption:</strong> The cast, designed so players grow attached to individual animals rather than treating them as interchangeable resources.</figcaption>
+  <!-- ── THE AIM ── -->
+  <div class="wide">
+    <section class="kr-block">
+      <div class="kr-aim">
+        <p class="kr-eyebrow">The Aim</p>
+        <h2 class="kr-aim-h">Build <span class="mark">living worlds</span>, not decorated spaces.</h2>
+        <p>The north star for Kawaii Rooms was a world that felt genuinely alive. Pets with real needs and moods, relationships that grew over time, and rooms that responded to how you cared for them. Every system existed to make the world feel lived-in rather than laid out, so that players weren't arranging furniture, they were looking after a little world of their own.</p>
       </div>
     </section>
   </div>
 
-  <!-- ─── 02: Central Hook ─── -->
-  <div class="container">
-    <section class="cs-section">
-      <div class="section-label">
-        <span class="num">02</span>
-        <h4>The Central Hook</h4>
-      </div>
-      <h2>Create species that have never existed before</h2>
-      <p style="margin-top: 20px;">The long-term hook was the promise of real discovery through breeding. Pair the right two pets and their offspring inherit traits from both parents, sometimes combining into a brand new species. That was the engine driving everything else. Nurturing, socialising, and decorating were all in service of setting up one good, well-matched pairing.</p>
-
-      <div class="quote-block">
-        <p>"What if the whole point of the game was being a matchmaker? And what if that meant genuinely caring for your pets first?"</p>
-      </div>
-
-      <!-- BREEDING / GENETICS DIAGRAM -->
-      <div class="media">
-        <div class="img-ph r-wide">
-          <span class="ph-icon">Image 05 · Diagram</span>
-          <span class="ph-title">Breeding and genetics inheritance</span>
-          <span class="ph-desc">Parent A plus Parent B leading to offspring trait inheritance, with a rare-combination path that unlocks a new species. A clean FigJam or Miro export, or a Punnett-style chart, works well.</span>
-          <span class="ph-spec">images/kawaii-rooms/05-genetics.png · 1600×1000 · PNG</span>
-        </div>
-        <figcaption><strong>Caption:</strong> Trait inheritance followed soft, learnable rules, so it felt surprising without ever feeling random.</figcaption>
+  <!-- ── THE GAME ── -->
+  <div class="wide">
+    <section class="kr-block">
+      <div class="kr-lede">
+        <p class="kr-eyebrow">The Game</p>
+        <h2>Pets, rooms, and the hunt for the rarest breed</h2>
+        <p>Kawaii Rooms was a Facebook game that pulled four genres together at once: social, time management, builder, and nurture. Players cared for cute pets, built out their personal living spaces, and bred them to discover entirely new species. It was built to drive both a quick daily visit and a long-term collection goal.</p>
+        <p>The tone was deliberately warm and cute, but the systems underneath were anything but shallow. A pet's wellbeing, its relationships, and its room all had real mechanical consequences. None of it was just for show, and carrying that depth lightly was the heart of the design challenge.</p>
       </div>
     </section>
   </div>
 
-  <!-- ─── 03: Systems ─── -->
-  <div class="container">
-    <section class="cs-section">
-      <div class="section-label">
-        <span class="num">03</span>
-        <h4>Systems I Designed</h4>
-      </div>
-      <h2>Four interlocking systems, one cohesive loop</h2>
-      <p style="margin-top: 20px;">The real challenge was making four separate systems feel like a single game rather than four bolted-on features. Each one fed into the others, with breeding as the shared long-term goal that tied everything together.</p>
-
-      <div class="system-block">
-        <h3>The nurture loop, which drives the daily visit</h3>
-        <p>Every pet had a set of live needs: temperature regulation (some thrive in warmth, others in cold), regular feeding with the right food for their species, and social time. These weren't passive timers. Neglecting them genuinely affected a pet's mood, health, and readiness to breed, so players came back each day because something was at stake, not because a clock told them to.</p>
-      </div>
-
-      <div class="system-block">
-        <h3>Socialisation and romantic matching</h3>
-        <p>Pets had to form social bonds before they could breed. That was a deliberate choice to slow the breeding loop down and build emotional investment along the way. Players introduced pets to one another, managed their compatibility, and grew relationships over time. Some pets clicked, others clashed, and finding the right match took observation and a bit of experimentation. That's what made players care about individual animals instead of seeing them as resources.</p>
-      </div>
-
-      <div class="system-block">
-        <h3>Breeding and genetics</h3>
-        <p>This was the core long-term progression mechanic. A successful pairing produced offspring that inherited a blend of traits from both parents: appearance, temperament, environmental preferences, and stat profiles. Certain rare combinations produced entirely new species, and those were the discovery moments the whole game was built around. It had to feel surprising without being pure luck, so inheritance followed soft, learnable rules that players could pick up and start working with over time.</p>
-      </div>
-
-      <div class="system-block">
-        <h3>Room decoration, where every item matters</h3>
-        <p>Each pet had its own room to decorate with furniture, accessories, and little environmental touches. The key was that items weren't cosmetic. Each one nudged the pet's mood, social confidence, comfort, or breeding readiness. A room was both an expressive space and a strategic one, which created a natural reason to keep earning items and placing them thoughtfully, all without the mechanic ever feeling transactional.</p>
-      </div>
-
-      <!-- ROOM DECORATION SCREENS -->
-      <div class="media">
-        <div class="media-gallery cols-2">
-          <div class="img-ph r-wide">
-            <span class="ph-icon">Image 06</span>
-            <span class="ph-title">Room decoration UI</span>
-            <span class="ph-desc">The room builder: a furniture and item tray, with a pet in its space.</span>
-            <span class="ph-spec">images/kawaii-rooms/06-room-ui.png · 1280×720</span>
-          </div>
-          <div class="img-ph r-wide">
-            <span class="ph-icon">Image 07</span>
-            <span class="ph-title">Item effect callout</span>
-            <span class="ph-desc">An item tooltip showing its stat effect on mood, comfort, or breeding readiness.</span>
-            <span class="ph-spec">images/kawaii-rooms/07-item-effect.png · 1280×720</span>
-          </div>
-        </div>
-        <figcaption><strong>Caption:</strong> Decoration as strategy. Every item carried a real effect, never just a look.</figcaption>
-      </div>
-
-      <!-- SOCIALISATION UI -->
-      <div class="media">
-        <div class="img-ph r-wide">
-          <span class="ph-icon">Image 08</span>
-          <span class="ph-title">Socialisation / matchmaking screen</span>
-          <span class="ph-desc">Two pets being introduced, with a compatibility or relationship meter building over time.</span>
-          <span class="ph-spec">images/kawaii-rooms/08-matchmaking.png · 1600×900</span>
-        </div>
-        <figcaption><strong>Caption:</strong> Bonds before breeding. A deliberate slowdown that built real investment.</figcaption>
+  <!-- ── REEL ── -->
+  <div class="wide">
+    <section class="kr-block tight">
+      <p class="kr-eyebrow">From the Studio · kickAlive</p>
+      <div class="kr-reel">
+        <iframe
+          src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F533559370150516&show_text=false&width=680&t=0"
+          title="kickAlive studio intro reel"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          scrolling="no"></iframe>
       </div>
     </section>
   </div>
 
-  <!-- ─── 04: Loop Analysis ─── -->
-  <div class="container">
-    <section class="cs-section">
-      <div class="section-label">
-        <span class="num">04</span>
-        <h4>Loop Design</h4>
+  <!-- ── CAST ── -->
+  <div class="wide">
+    <section class="kr-block tight">
+      <p class="kr-eyebrow">Meet the Cast</p>
+      <div class="kr-cast">
+        <figure style="margin:0;">
+          <img src="images/kawaii-rooms/pets-base.png" alt="Base species pets" />
+          <figcaption>The starter pets players begin with.</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <img src="images/kawaii-rooms/pets-rare.png" alt="Rare hybrid pets" />
+          <figcaption>Rare hybrids discovered through breeding.</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <img src="images/kawaii-rooms/pet-moods.png" alt="A pet across different moods" />
+          <figcaption>One pet across happy, sad, and cold.</figcaption>
+        </figure>
       </div>
-      <h2>Engagement at three different timescales</h2>
-      <p style="margin-top: 20px;">A big goal was giving players a real reason to come back at different rhythms, not just daily but across weeks and months. The short loop handles retention, and the long loop handles commitment.</p>
+    </section>
+  </div>
 
-      <!-- LOOP DIAGRAM -->
-      <div class="media">
-        <div class="img-ph r-wide">
-          <span class="ph-icon">Image 09 · Diagram</span>
-          <span class="ph-title">The core loop across daily, weekly, and ongoing play</span>
-          <span class="ph-desc">A loop diagram tying nurture (daily) to relationships and items (weekly) to breeding and discovery (ongoing). It should match the three blocks below.</span>
-          <span class="ph-spec">images/kawaii-rooms/09-loops.png · 1600×900 · PNG</span>
-        </div>
-        <figcaption><strong>Caption:</strong> Three nested loops, with retention at the centre and commitment at the edges.</figcaption>
+  <!-- ── HOOK QUOTE ── -->
+  <div class="wide">
+    <section class="kr-block tight">
+      <div class="kr-quote">
+        <p>"What if the whole point of the game was being a <span class="mark">matchmaker</span>? And what if that meant genuinely caring for your pets first?"</p>
       </div>
+    </section>
+  </div>
 
-      <div class="info-grid">
-        <div class="info-block">
-          <div class="label">Short Loop, Daily</div>
-          <div class="value">Feed, regulate temperature, and socialise. Keep pets healthy and emotionally ready.</div>
+  <!-- ── SYSTEMS as alternating rows ── -->
+  <div class="wide">
+    <section class="kr-block">
+      <p class="kr-eyebrow">The Systems</p>
+      <div class="kr-rows">
+
+        <div class="kr-row">
+          <div class="kr-media">
+            <img src="images/kawaii-rooms/nurture.png" alt="Pet care and needs screen" />
+          </div>
+          <div class="kr-text">
+            <div class="kr-num">01</div>
+            <h3>The nurture loop, which drives the daily visit</h3>
+            <p>Every pet had a set of live needs: temperature regulation, regular feeding with the right food, and social time. These weren't passive timers. Neglecting them genuinely affected a pet's mood, health, and readiness to breed, so players came back each day because something was at stake, not because a clock told them to.</p>
+          </div>
         </div>
-        <div class="info-block">
-          <div class="label">Medium Loop, Weekly</div>
-          <div class="value">Build pet relationships toward compatibility. Unlock new items. Experiment with room arrangements.</div>
+
+        <div class="kr-row">
+          <div class="kr-media">
+            <img src="images/kawaii-rooms/matchmaking.png" alt="Socialisation and matchmaking screen" />
+          </div>
+          <div class="kr-text">
+            <div class="kr-num">02</div>
+            <h3>Socialisation and romantic matching</h3>
+            <p>Pets had to form social bonds before they could breed. That was a deliberate choice to slow the breeding loop down and build emotional investment along the way. Players introduced pets, managed compatibility, and grew relationships over time. Some pets clicked, others clashed, and finding the right match took observation and a bit of experimentation.</p>
+          </div>
         </div>
-        <div class="info-block">
-          <div class="label">Long Loop, Ongoing</div>
-          <div class="value">Breed rare combinations. Discover new species. Complete the collection. Share what you find.</div>
+
+        <div class="kr-row">
+          <div class="kr-media">
+            <img src="images/kawaii-rooms/genetics.png" alt="Breeding and genetics inheritance" />
+          </div>
+          <div class="kr-text">
+            <div class="kr-num">03</div>
+            <h3>Breeding and genetics</h3>
+            <p>The core long-term progression mechanic. A successful pairing produced offspring that inherited a blend of traits from both parents: appearance, temperament, preferences, and stats. Certain rare combinations produced entirely new species, and those were the discovery moments the whole game was built around. It followed soft, learnable rules, so it felt surprising without ever feeling random.</p>
+          </div>
+        </div>
+
+        <div class="kr-row">
+          <div class="kr-media">
+            <img src="images/kawaii-rooms/room-ui.png" alt="Room decoration UI" />
+          </div>
+          <div class="kr-text">
+            <div class="kr-num">04</div>
+            <h3>Room decoration, where every item matters</h3>
+            <p>Each pet had its own room to decorate. The key was that items weren't cosmetic. Each one nudged the pet's mood, social confidence, comfort, or breeding readiness. A room was both an expressive space and a strategic one, which gave players a natural reason to keep earning items and placing them thoughtfully, all without the mechanic ever feeling transactional.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ── CORE LOOP band ── -->
+  <div class="wide">
+    <section class="kr-block tight">
+      <p class="kr-eyebrow">The Core Loop, at Three Timescales</p>
+      <div class="kr-loop">
+        <div class="kr-step">
+          <div class="t">Daily</div>
+          <p>Feed, regulate temperature, and socialise. Keep pets healthy and emotionally ready.</p>
+        </div>
+        <div class="kr-step">
+          <div class="t">Weekly</div>
+          <p>Build relationships toward compatibility. Unlock new items. Experiment with room arrangements.</p>
+        </div>
+        <div class="kr-step">
+          <div class="t">Ongoing</div>
+          <p>Breed rare combinations. Discover new species. Complete the collection. Share what you find.</p>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- ─── 05: Design Approach ─── -->
-  <div class="container">
-    <section class="cs-section">
-      <div class="section-label">
-        <span class="num">05</span>
-        <h4>Design Approach</h4>
+  <!-- ── CLOSING ── -->
+  <div class="wide">
+    <section class="kr-block">
+      <div class="kr-close">
+        <h2>Depth worn lightly</h2>
+        <p>The tension running through the whole project was building systems that were genuinely complex without ever making players feel like they were doing homework. The nurture mechanics, the genetics, the item effects: none of them were surfaced as systems. They were surfaced as feelings. Is my pet happy? Do these two get along? Does this room feel right for them?</p>
+        <p>That approach, where the mechanics serve an emotional story rather than reading like a spreadsheet, is what I think gives casual games lasting engagement. Players don't need to understand the system. They just need to care about how it turns out, and to feel like the little world in front of them is genuinely alive.</p>
       </div>
-      <h2>Depth worn lightly</h2>
-      <p style="margin-top: 20px;">The tension running through the whole project was building systems that were genuinely complex without ever making players feel like they were doing homework. The nurture mechanics, the genetics, the item effects: none of these were surfaced as systems. They were surfaced as feelings. Is my pet happy? Do these two get along? Does this room feel right for them?</p>
-      <p>That approach, where the mechanics serve an emotional story rather than reading like a spreadsheet, is what I think gives casual games lasting engagement. Players don't need to understand the system. They just need to care about how it turns out.</p>
     </section>
   </div>
 
-  <!-- ─── PROJECT NAV ─── -->
-  <div class="container">
+  <!-- ── PROJECT NAV ── -->
+  <div class="wide">
     <div class="project-nav">
       <a href="mumbai-gullies.html">← Mumbai Gullies</a>
       <a href="all-india-quiz.html">Next: All India Quiz →</a>
