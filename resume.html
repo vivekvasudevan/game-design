@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume · Vivek Vasudevan</title>
-  <link rel="stylesheet" href="styles.css">
+  <script>(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();function toggleTheme(){var h=document.documentElement,t=h.getAttribute('data-theme')==='light'?'dark':'light';h.setAttribute('data-theme',t);try{localStorage.setItem('theme',t);}catch(e){}}</script>
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -13,6 +14,7 @@
     <ul class="nav-links">
       <li><a href="index.html">Work</a></li>
       <li><a href="resume.html" class="active">Resume</a></li>
+      <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light or dark mode" title="Toggle theme"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></li>
     </ul>
   </nav>
 
@@ -25,8 +27,8 @@
       <p style="font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; max-width: none;">Senior Game Designer · Economy Designer · Studio Founder</p>
       <p style="font-size: 14px; color: var(--muted); max-width: none;">Melbourne, AU</p>
       <div class="tags" style="margin-top: 24px;">
-        <span class="tag">10+ Years Experience</span>
-        <span class="tag">Mobile Games</span>
+        <span class="tag">16+ Years Experience</span>
+        <span class="tag">PC + Mobile Games</span>
         <span class="tag">Economy Design</span>
         <span class="tag">GDD Authoring</span>
         <span class="tag">Startup Leadership</span>
@@ -39,7 +41,7 @@
     <div class="resume-section">
       <h3>Summary</h3>
       <p style="font-size: 16px; max-width: none; line-height: 1.85; color: var(--text-secondary);">
-        I'm a designer at heart with 10+ years of experience across game design, product design, and creative leadership. I've built mobile games, designed player economies, founded and led a game studio, and served as Game Director on Mumbai Gullies, India's first open-world third-person shooter for PC. I enjoy joining teams early, solving complex design problems, and turning ideas into engaging experiences. My blend of game design and UX expertise helps me balance player needs, business goals, and technical constraints.
+        I'm a designer at heart with 16+ years across game design, product design, and creative leadership, and I've loved every version of the work. I've built mobile games, designed player economies, co-founded and led my own studio, and served as Game Director on Mumbai Gullies, India's first open-world third-person shooter for PC, where my design direction and GDD work helped secure the studio's Series A funding. I enjoy joining teams early, untangling complex design problems, and turning ideas into experiences people want to spend time in. My blend of game design and UX lets me balance player needs, business goals, and technical reality, and I've recently woven AI tools like Claude and Figma's AI workflows into my daily practice.
       </p>
     </div>
 
@@ -49,42 +51,69 @@
 
       <div class="job">
         <div>
-          <div class="job-title">Director / Lead Game Designer / Economy Designer</div>
-          <div class="job-company">One Eyed Octopus Studios Pvt. Ltd. · Pune, India</div>
+          <div class="job-title">Independent Design Practice</div>
+          <div class="job-company">Melbourne, Australia</div>
           <ul>
-            <li>Co-founded the studio and led all game design from scratch: core loops, economy systems, player progression, UI/UX, and GDD documentation across multiple projects over five years</li>
-            <li>Took full creative and feature ownership at startup stage, driving product direction from ideation to playable builds</li>
-            <li>Produced comprehensive GDDs translating high-level concepts into technical specifications for engineering and art</li>
-            <li>Operated part-time as Producer: sprint planning, milestone tracking, dependency management, and external communication</li>
+            <li>Designing and validating a SaaS product with a partner that helps the delivery arms of commercial goods companies run paperless operations, using AI to rapidly prototype flows and lo-fi wireframes and validate them with stakeholders early</li>
+            <li>Helped a small game studio get off the ground, setting up their design and production pipelines and ways of working, which supported them in securing seed funding</li>
+            <li>Supported roadmap planning across a multi-title slate, including a shared quiz engine as the connective technical architecture across products</li>
+            <li>Worked alongside a four-person team on creative direction, scope, and milestone planning during the studio's early production phase</li>
+            <li>Use AI tools (Claude, MCP integrations, Figma AI workflows) daily across design, documentation, presentations, and faster synthesis of research data, and recently built my own responsive portfolio site from scratch in two days using them</li>
           </ul>
         </div>
-        <div class="job-date">Nov 2013 to 2018</div>
+        <div class="job-date">Jul 2025 to Present</div>
       </div>
 
       <div class="job">
         <div>
           <div class="job-title">Lead Game Designer / Game Director (Consultant)</div>
-          <div class="job-company">GameEon · Mumbai Gullies</div>
+          <div class="job-company">GameEon · Mumbai, India</div>
           <ul>
-            <li>Served as de facto Game Director on India's first open-world third-person shooter for PC (GTA-scale), reporting directly to Studio Owner Nikhil Malankar</li>
-            <li>Authored the foundational GDD defining the entire design direction, systems architecture, and feature roadmap for the project</li>
-            <li>Designed core open-world interaction systems, mission design framework, and player economy from the ground up</li>
-            <li>Led bilingual design for full English and Hindi parity, a first for an Indian title of this scale</li>
-            <li>Coordinated daily across production, art, and story teams as the sole point of design alignment</li>
+            <li>Acted as de facto Game Director on India's first open-world third-person shooter for PC (GTA-scale), reporting directly to the studio owner</li>
+            <li>Authored the foundational GDD defining design direction, systems architecture, and the full feature roadmap, work that helped secure the studio's Series A funding</li>
+            <li>Designed the core open-world interaction systems, mission framework, and player economy from the ground up</li>
+            <li>Led bilingual design for full English and Hindi parity, a first for an Indian title at this scale</li>
+            <li>Coordinated daily across production, art, and story as the sole point of design alignment</li>
           </ul>
         </div>
-        <div class="job-date">Jul 2021 to Mar 2022</div>
+        <div class="job-date">Oct 2020 to Mar 2022</div>
+      </div>
+
+      <div class="job">
+        <div>
+          <div class="job-title">Design Consultant</div>
+          <div class="job-company">Game Marketing Genie · Melbourne, Australia</div>
+          <ul>
+            <li>Created marketing art assets for a small gaming company as part of an external contract engagement</li>
+            <li>Acted as the client point of contact for a game audit project, leading a team to audit the client's codebase and helping polish the gameplay experience</li>
+          </ul>
+        </div>
+        <div class="job-date">Aug 2019 to May 2020</div>
+      </div>
+
+      <div class="job">
+        <div>
+          <div class="job-title">Director and Co-Founder / Lead Designer / Economy Designer</div>
+          <div class="job-company">One Eyed Octopus Studios Pvt. Ltd. · Pune, India</div>
+          <ul>
+            <li>Co-founded the studio and owned all game design from scratch: core loops, economy, progression, UI/UX, and GDDs across multiple projects over five years</li>
+            <li>Drove product direction from ideation to playable builds with full creative and feature ownership at startup stage</li>
+            <li>Led design on a gamified learning project for client Imbibeo, teaching children subjects like history and geography through play, working directly with the client to get a proof of concept investor-ready</li>
+            <li>Led design and development for client SportSim, creating three interactive games for large touchscreen displays used at live events to capture data from booth visitors</li>
+            <li>Doubled as part-time Producer, handling sprint planning, milestone tracking, dependency management, and external communication</li>
+          </ul>
+        </div>
+        <div class="job-date">Nov 2013 to Jun 2018</div>
       </div>
 
       <div class="job">
         <div>
           <div class="job-title">Game Designer (Consultant)</div>
-          <div class="job-company">kickAlive · Kawaii Rooms</div>
+          <div class="job-company">kickAlive · France (engaged through One Eyed Octopus Studios)</div>
           <ul>
-            <li>Designed core mechanics for a social casual Facebook game centred on pet nurture, breeding, and collection</li>
-            <li>Built a genetics-driven breeding system for creating new species through strategic pet pairing and relationship building</li>
-            <li>Designed item-effect systems where room decoration actively modified pet stats, moods, and breeding readiness</li>
-            <li>Joined at startup growth stage, taking independent design direction with minimal oversight</li>
+            <li>Co-designed core mechanics for a social casual Facebook game built around pet nurture, breeding, and collection</li>
+            <li>Built a genetics-driven breeding system for creating new species through strategic pairing, plus item-effect systems where room decoration modified pet stats, moods, and breeding readiness</li>
+            <li>Took independent design direction with minimal oversight at the startup's growth stage</li>
           </ul>
         </div>
         <div class="job-date">May 2016 to Dec 2016</div>
@@ -95,34 +124,13 @@
           <div class="job-title">Lead Designer</div>
           <div class="job-company">Jump / Zapak / Reliance Games · Pune, India</div>
           <ul>
-            <li>Lead Designer at a major mobile publisher working with global IP: Warner Bros, DreamWorks, Sony Pictures</li>
-            <li>Covered game design, level design, economic design, and UI design across multiple titles</li>
-            <li>Gained direct experience within large IP licensing frameworks and partner-facing design workflows</li>
+            <li>Lead Designer at a major mobile publisher working with global IP including Warner Bros, DreamWorks, and Sony Pictures</li>
+            <li>Led a team of designers across multiple concurrent projects, owning design direction and quality</li>
+            <li>Co-created and co-designed games for Hollywood IP (such as After Earth) alongside Canadian studio Behaviour Interactive, gaining direct experience inside large IP licensing and partner-facing workflows</li>
+            <li>Covered game, level, economy, and UI design across multiple titles, and stepped in as Lead to carry a game through to completion</li>
           </ul>
         </div>
         <div class="job-date">Jan 2012 to Nov 2013</div>
-      </div>
-
-      <div class="job">
-        <div>
-          <div class="job-title">Game Design Intern</div>
-          <div class="job-company">Dhruva Interactive · Pune, India</div>
-          <ul>
-            <li>Contributed to game content creation services across active client projects</li>
-          </ul>
-        </div>
-        <div class="job-date">2011</div>
-      </div>
-
-      <div class="job">
-        <div>
-          <div class="job-title">Game Design Trainee</div>
-          <div class="job-company">Ubisoft · Pune, India</div>
-          <ul>
-            <li>Researched IP adaptations and contributed UX recommendations for mobile platform titles within an AAA design pipeline</li>
-          </ul>
-        </div>
-        <div class="job-date">2010</div>
       </div>
     </div>
 
@@ -133,18 +141,26 @@
       <div class="job">
         <div>
           <div class="job-title">Senior Product Designer / Lead Product UX Designer / UX Designer</div>
-          <div class="job-company">Kolmeo, Atisfy, Blockchain Tech</div>
+          <div class="job-company">Kolmeo, Atisfy, Blockchain Tech · Melbourne, Australia</div>
           <ul>
-            <li>Led a small team of designers across iOS and Android titles, delegating work to junior designers and actively training them</li>
-            <li>Created and maintained game design specification documents; liaised with the design director to resolve design issues</li>
-            <li>Designed game economies, proposed and balanced game data, and created game content and quests</li>
-            <li>Authored level layouts and UI game flow designs across multiple shipped mobile titles</li>
-            <li>Coordinated closely with artists and programmers to ensure clarity of briefs and alignment on task intent</li>
-            <li>Responsible for playtesting and feeding findings back into the design iteration cycle</li>
+            <li>Led a six-person design team with a data-driven, human-centred approach, driving a 42% lift in team productivity and growing designers across UX, UI, graphic, and motion</li>
+            <li>Helped shape product vision for an AI-driven influencer marketing platform, onboarding 50+ brands and 18,000+ creators while cutting onboarding time by 41%</li>
+            <li>At Kolmeo, led end-to-end product design for a new platform initiative, hitting feature parity while improving usability, partnering closely with product managers, solution architects, business analysts, and engineering</li>
+            <li>Ran qualitative and quantitative research (interviews, usability testing, personas, journey mapping) to inform and validate design decisions across the full lifecycle</li>
+            <li>Built and extended design systems with reusable components and interaction patterns, and applied WCAG 2.1 AA accessibility throughout (contrast, focus, labelling)</li>
+            <li>Earlier, designed secure mobile-first experiences across a four-product blockchain fintech ecosystem, balancing strict security needs with intuitive flows</li>
           </ul>
         </div>
         <div class="job-date">Jul 2018 to Oct 2025</div>
       </div>
+    </div>
+
+    <!-- ─── PUBLICATION ─── -->
+    <div class="resume-section">
+      <h3>Publication</h3>
+      <p style="font-size: 16px; max-width: none; line-height: 1.85; color: var(--text-secondary);">
+        Contributor to "Leading the Customer-Led Revolution", a #1 Amazon Bestseller by Sueanne Carr and Peter Turner, founders of Australian customer experience consultancy Customer Frame.
+      </p>
     </div>
 
     <!-- ─── SKILLS ─── -->
@@ -182,7 +198,7 @@
       <h3>Education</h3>
       <div class="job">
         <div>
-          <div class="job-title">Video Games Direction and Production Management</div>
+          <div class="job-title">Video Game Design and Project Management</div>
           <div class="job-company">DSK Supinfogame · Pune, India</div>
         </div>
         <div class="job-date">2009 to 2011</div>
